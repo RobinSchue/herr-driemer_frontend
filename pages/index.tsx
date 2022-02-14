@@ -1,7 +1,6 @@
-import { ApolloClient, ApolloLink, InMemoryCache, gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
 
@@ -14,7 +13,7 @@ interface HomeProps {
   }[];
 }
 
-const Home = ({ projects }: HomeProps): JSX.Element => {
+const Home: NextPage<HomeProps> = ({ projects }) => {
   console.log(projects);
   return (
     <div className={styles.container}>
@@ -35,7 +34,7 @@ export default Home;
 
 export async function getStaticProps() {
   const client = new ApolloClient({
-    uri: "http://localhost:1337/graphql",
+    uri: process.env.REACT_APP_BACKEND_URL,
     cache: new InMemoryCache(),
     connectToDevTools: true,
   });
@@ -57,7 +56,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      projects: data.projects.data,
+      projects: await data.projects.data,
     },
   };
 }
