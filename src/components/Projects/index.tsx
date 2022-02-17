@@ -1,43 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
-interface ProjectsProps {
+export interface ProjectsProps {
   projects: {
     id: string;
     attributes: {
       title: string;
+      description?: string;
+      agenturName?: string;
     };
   }[];
-}
-
-export async function getStaticProps() {
-  const client = new ApolloClient({
-    uri: process.env.REACT_APP_BACKEND_URL,
-    cache: new InMemoryCache(),
-    connectToDevTools: true,
-  });
-
-  const { data } = await client.query({
-    query: gql`
-      query getProjects {
-        projects {
-          data {
-            id
-            attributes {
-              title
-            }
-          }
-        }
-      }
-    `,
-  });
-
-  return {
-    props: {
-      projects: await data.projects.data,
-    },
-  };
 }
 
 export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
@@ -47,7 +18,17 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
       <h1>Projects</h1>
       {projects ? (
         projects.map((project, key) => {
-          return <div key={key}>{project.attributes.title}</div>;
+          return (
+            <div key={key}>
+              <p>{project.attributes.title}</p>
+              {project.attributes.description && (
+                <p>{project.attributes.description}</p>
+              )}
+              {project.attributes.agenturName && (
+                <p>{project.attributes.agenturName}</p>
+              )}
+            </div>
+          );
         })
       ) : (
         <div>Fetching failed</div>
