@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/Query/index.js",
-    "src/components/Projects/index.tsx"
+    "src/components/Projects/index.tsx",
+    "pages/_app.js"
   ],
   "exclude": ["node_modules"]
 }
