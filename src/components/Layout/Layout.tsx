@@ -6,6 +6,7 @@ import { Grid, Link, styled } from "@mui/material";
 import Logo from "../Logo/Logo";
 
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const LinkButton = styled(Link)({
   border: 0,
@@ -29,31 +30,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       direction="column"
     >
       <Header />
-      {children}
-      <footer>
-        <Grid
-          container
-          item
-          xs={12}
-          justifyContent="flex-end"
-          className="italic"
-          alignContent="end"
-          spacing={4}
-        >
-          <Grid item textAlign="end">
-            <LinkButton
-              target="_blank"
-              href="https://www.instagram.com/driem.works"
-              rel="noreferrer"
-            >
-              Instagram
-            </LinkButton>
-          </Grid>
-          <Grid item textAlign="end">
-            <LinkButton href="/imprint">Impressum</LinkButton>
-          </Grid>
-        </Grid>
-      </footer>
+      <Grid container xs={12} sx={{ paddingTop: 4, paddingBottom: 8 }}>
+        {children}
+      </Grid>
+      <Footer />
     </Grid>
   );
 }

@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React from "react";
 
 export interface ProjectsProps {
@@ -15,17 +16,23 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   console.log(projects);
   return (
     <div>
-      <h1>Projects</h1>
+      <Typography variant="h4" paragraph>
+        Projects
+      </Typography>
       {projects ? (
         projects.map((project, key) => {
           return (
             <div key={key}>
-              <p>{project.attributes.title}</p>
+              <Typography variant="h5">{project.attributes.title}</Typography>
               {project.attributes.description && (
-                <p>{project.attributes.description}</p>
+                <Typography variant="h5">
+                  {project.attributes.description}
+                </Typography>
               )}
               {project.attributes.agenturName && (
-                <p>{project.attributes.agenturName}</p>
+                <Typography variant="h5">
+                  {project.attributes.agenturName}
+                </Typography>
               )}
             </div>
           );

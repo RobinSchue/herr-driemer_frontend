@@ -17,21 +17,18 @@ const LinkButton = styled(MuiLink)({
 
 export default function Header() {
   return (
-    <Grid container>
+    <Grid container sx={{ height: 56 }}>
       <Grid item xs>
         <Link href="/">
-          <Logo />
+          <a>
+            <Logo />
+          </a>
         </Link>
       </Grid>
       <Grid container item xs={8} justifyContent="flex-end" spacing={4}>
         <Grid item textAlign="end">
           <Link href="/about">
             <LinkButton>About</LinkButton>
-          </Link>
-        </Grid>
-        <Grid item textAlign="end">
-          <Link href="/contact">
-            <LinkButton>Contact</LinkButton>
           </Link>
         </Grid>
       </Grid>
