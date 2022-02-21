@@ -1,4 +1,5 @@
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 
 export interface ProjectsProps {
@@ -6,8 +7,11 @@ export interface ProjectsProps {
     id: string;
     attributes: {
       title: string;
+      images: {
+        url: string;
+      }[];
       description?: string;
-      agenturName?: string;
+      client?: string;
     };
   }[];
 }
@@ -22,19 +26,25 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
       {projects ? (
         projects.map((project, key) => {
           return (
-            <div key={key}>
+            <Box key={key} marginBottom={4}>
               <Typography variant="h5">{project.attributes.title}</Typography>
+              {project.attributes.client && (
+                <Typography variant="overline">
+                  {project.attributes.client}
+                </Typography>
+              )}
               {project.attributes.description && (
-                <Typography variant="h5">
+                <Typography variant="body2">
                   {project.attributes.description}
                 </Typography>
               )}
-              {project.attributes.agenturName && (
-                <Typography variant="h5">
-                  {project.attributes.agenturName}
-                </Typography>
-              )}
-            </div>
+              {project.attributes.images &&
+                project.attributes.images.map((image, key) => (
+                  <Typography key={key} variant="h5">
+                    {image.url}
+                  </Typography>
+                ))}
+            </Box>
           );
         })
       ) : (

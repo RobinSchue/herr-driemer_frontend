@@ -7,6 +7,8 @@ const PROJECTS_QUERY = gql`
         id
         attributes {
           title
+          description
+          client
         }
       }
     }

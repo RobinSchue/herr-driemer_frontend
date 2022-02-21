@@ -45,6 +45,8 @@ export async function getStaticProps() {
             id
             attributes {
               title
+              description
+              client
             }
           }
         }

@@ -434,6 +434,58 @@ type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
 
+input AboutInput {
+  headline: String
+  description: String
+  images: [ID]
+  publishedAt: DateTime
+}
+
+type About {
+  headline: String
+  description: String
+  images(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type AboutEntity {
+  id: ID
+  attributes: About
+}
+
+type AboutEntityResponse {
+  data: AboutEntity
+}
+
+input ContactInput {
+  headline: String
+  contactDetails: String
+  publishedAt: DateTime
+}
+
+type Contact {
+  headline: String!
+  contactDetails: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ContactEntity {
+  id: ID
+  attributes: Contact
+}
+
+type ContactEntityResponse {
+  data: ContactEntity
+}
+
 input HomepageInput {
   title: String
   publishedAt: DateTime
@@ -463,9 +515,35 @@ type HomepageRelationResponseCollection {
   data: [HomepageEntity!]!
 }
 
+input ImprintInput {
+  headline: String
+  text: String
+  publishedAt: DateTime
+}
+
+type Imprint {
+  headline: String!
+  text: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ImprintEntity {
+  id: ID
+  attributes: Imprint
+}
+
+type ImprintEntityResponse {
+  data: ImprintEntity
+}
+
 input ProjectFiltersInput {
   id: IDFilterInput
   title: StringFilterInput
+  client: StringFilterInput
+  description: StringFilterInput
+  isHero: BooleanFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -479,6 +557,10 @@ input ProjectFiltersInput {
 input ProjectInput {
   title: String
   images: [ID]
+  client: String
+  description: String
+  isHero: Boolean
+  headerImage: ID
   publishedAt: DateTime
 }
 
@@ -489,6 +571,10 @@ type Project {
     pagination: PaginationArg = {}
     sort: [String] = []
   ): UploadFileRelationResponseCollection
+  client: String
+  description: String
+  isHero: Boolean
+  headerImage: UploadFileEntityResponse
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -525,7 +611,10 @@ union GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+  | About
+  | Contact
   | Homepage
+  | Imprint
   | Project
 
 input FileInfoInput {
@@ -618,10 +707,13 @@ type Query {
     pagination: PaginationArg = {}
     sort: [String] = []
   ): UsersPermissionsUserEntityResponseCollection
+  about(publicationState: PublicationState = LIVE): AboutEntityResponse
+  contact(publicationState: PublicationState = LIVE): ContactEntityResponse
   homepage(
     publicationState: PublicationState = LIVE
     locale: I18NLocaleCode
   ): HomepageEntityResponse
+  imprint(publicationState: PublicationState = LIVE): ImprintEntityResponse
   project(id: ID, locale: I18NLocaleCode): ProjectEntityResponse
   projects(
     filters: ProjectFiltersInput
@@ -637,11 +729,17 @@ type Mutation {
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
   updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
+  updateAbout(data: AboutInput!): AboutEntityResponse
+  deleteAbout: AboutEntityResponse
+  updateContact(data: ContactInput!): ContactEntityResponse
+  deleteContact: ContactEntityResponse
   updateHomepage(
     data: HomepageInput!
     locale: I18NLocaleCode
   ): HomepageEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
+  updateImprint(data: ImprintInput!): ImprintEntityResponse
+  deleteImprint: ImprintEntityResponse
   createProject(
     data: ProjectInput!
     locale: I18NLocaleCode
