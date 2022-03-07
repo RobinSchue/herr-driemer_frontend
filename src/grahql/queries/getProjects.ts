@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-const PROJECTS_QUERY = gql`
+export const PROJECTS_QUERY = gql`
   query getProjects {
     projects {
       data {
@@ -9,6 +9,21 @@ const PROJECTS_QUERY = gql`
           title
           description
           client
+          isHero
+          headerImage {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          images {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }

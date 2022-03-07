@@ -5,6 +5,12 @@ import Layout from "../src/components/Layout/Layout";
 import { Projects, ProjectsProps } from "../src/components/Projects";
 
 const Home: NextPage<ProjectsProps> = ({ projects }) => {
+  const projectsArray = projects?.map((project) => {
+    return {
+      ...project,
+    };
+  });
+
   return (
     <Layout>
       <div>
@@ -21,8 +27,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
           <meta name="robots" content="all" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-
-        <Projects projects={projects} />
+        <Projects projects={projectsArray} />
       </div>
     </Layout>
   );
@@ -47,6 +52,21 @@ export async function getStaticProps() {
               title
               description
               client
+              isHero
+              headerImage {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              images {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
