@@ -544,6 +544,13 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@cld-apis/utils@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@cld-apis/utils/-/utils-0.2.0.tgz#2a98d77f546bc968b6234959dec804b9953dbb94"
+  integrity sha512-WBhOZ+wz93G/vsqkfmIBsPYf7FH4i5ZKN3QYlUfg9Ni5A2E09CCfsNG6RUuGeLjDPaFXFbta1rkNf3+2hFlavQ==
+  dependencies:
+    snake-case "^3.0.4"
+
 "@emotion/babel-plugin@^11.3.0":
   version "11.7.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.7.2.tgz#fec75f38a6ab5b304b0601c74e2a5e77c95e5fa0"
@@ -2059,6 +2066,13 @@ clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+
+cloudinary-build-url@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/cloudinary-build-url/-/cloudinary-build-url-0.2.4.tgz#465889847cbd846ac36baafcb90e3b6d93e51ee2"
+  integrity sha512-Wi0aZPHOa90xDCCC4k9eoTVPIm3aWNyycO+rJUXvOyusQqmkPSprHSuJh3s2zNxEtuGj24aCM13iLDpilWMpSw==
+  dependencies:
+    "@cld-apis/utils" "^0.2.0"
 
 clsx@^1.1.1:
   version "1.1.1"

@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { Project, useGetProjectsQuery } from "../../../graphql/generated";
+import Image from "next/image";
 
 export interface ProjectTileProps {
   headerImageUrl?: string;
@@ -14,9 +14,11 @@ export const ProjectTile = ({
   title,
   client,
 }: ProjectTileProps): JSX.Element => {
+  console.log("headerImageUrl");
+  console.log(headerImageUrl);
   return (
     <Box marginBottom={4}>
-      <image height={100} width={100} href={headerImageUrl} />
+      <Image height={100} width={100} src={headerImageUrl ?? ""} alt="s" />
       <Typography variant="h5">{title}</Typography>
       <Typography variant="overline">{client}</Typography>
     </Box>

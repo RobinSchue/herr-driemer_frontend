@@ -16,6 +16,7 @@
     "@mui/material": "^5.4.2",
     "@mui/styles": "^5.4.2",
     "apollo-boost": "^0.4.9",
+    "cloudinary-build-url": "^0.2.4",
     "graphql": "^16.3.0",
     "next": "12.0.10",
     "normalize.css": "^8.0.1",

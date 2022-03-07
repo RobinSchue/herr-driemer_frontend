@@ -3,6 +3,19 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import { Projects, ProjectsProps } from "../src/components/Projects";
+import { buildUrl } from "cloudinary-build-url";
+
+const url = buildUrl("[Your Cloudinary Image ID]", {
+  cloud: {
+    cloudName: "rosccloudinary",
+  },
+  transformations: {
+    effect: {
+      name: "pixelate",
+      value: 40,
+    },
+  },
+});
 
 const Home: NextPage<ProjectsProps> = ({ projects }) => {
   const projectsArray = projects?.map((project) => {
