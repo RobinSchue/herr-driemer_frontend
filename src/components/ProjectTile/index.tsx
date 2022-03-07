@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import Image from "next/image";
+import buildUrl from "cloudinary-build-url";
 
 export interface ProjectTileProps {
   headerImageUrl?: string;
@@ -14,13 +15,19 @@ export const ProjectTile = ({
   title,
   client,
 }: ProjectTileProps): JSX.Element => {
-  console.log("headerImageUrl");
-  console.log(headerImageUrl);
+  const url = headerImageUrl
+    ? buildUrl(headerImageUrl, {
+        transformations: {
+          quality: 60,
+        },
+      })
+    : "";
+
+  console.log(url);
+
   return (
-    <Box marginBottom={4}>
-      <Image height={100} width={100} src={headerImageUrl ?? ""} alt="s" />
-      <Typography variant="h5">{title}</Typography>
-      <Typography variant="overline">{client}</Typography>
+    <Box>
+      <Image layout="responsive" height={600} width={900} src={url} alt="s" />
     </Box>
   );
 };
