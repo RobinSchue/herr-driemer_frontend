@@ -33,7 +33,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Grid container xs={12} sx={{ paddingTop: 4, paddingBottom: 8 }}>
         {children}
       </Grid>
-      <Footer />
     </Grid>
   );
 }

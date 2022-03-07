@@ -1,17 +1,9 @@
 /* eslint-disable @next/next/link-passhref */
 import * as React from "react";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import {
-  Grid,
-  styled,
-  Link as MuiLink,
-  Typography,
-  Divider,
-} from "@mui/material";
-import Logo from "../Logo/Logo";
+import { Grid, styled, Link as MuiLink, Divider } from "@mui/material";
 import Link from "next/link";
-
+import Contact from "../Contact/Contact";
+import { Contact as ContactType } from "../../../graphql/generated";
 const LinkButton = styled(MuiLink)({
   border: 0,
   borderRadius: 3,
@@ -22,21 +14,25 @@ const LinkButton = styled(MuiLink)({
 });
 
 const StyledFooter = styled("footer")(({ theme: { spacing } }) => ({
+  width: "100%",
   padding: `${spacing(4)} 0 ${spacing(8)} 0`,
 }));
 
-export default function Footer() {
+interface FooterProps {
+  contactData: ContactType;
+}
+
+export default function Footer({ contactData }: FooterProps) {
   return (
     <StyledFooter>
       <Divider sx={{ marginBottom: 4 }} />
       <Grid container item xs={12} className="italic" alignContent="end">
         <Grid item xs={12} paddingBottom={7}>
-          <Typography variant="h5" textAlign="center" paragraph>
-            Kontakt
-          </Typography>
-          <Typography variant="h4" textAlign="center">
-            hallo@herrdriemer.de
-          </Typography>
+          <Contact
+            headline={contactData.headline}
+            email={contactData.emailAdress}
+            contactDetails={contactData.contactDetails ?? ""}
+          />
         </Grid>
 
         <Grid item textAlign="end" sx={{ marginRight: 4 }}>

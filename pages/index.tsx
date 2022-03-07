@@ -5,17 +5,26 @@ import Layout from "../src/components/Layout/Layout";
 import { Projects, ProjectsProps } from "../src/components/Projects";
 import { buildUrl, setConfig } from "cloudinary-build-url";
 import { Typography } from "@mui/material";
+import { Contact, ContactEntity, ProjectEntity } from "../graphql/generated";
+import Footer from "../src/components/Footer/Footer";
 
 setConfig({
   cloudName: "rosccloudinary",
 });
 
-const Home: NextPage<ProjectsProps> = ({ projects }) => {
+interface HomePageProps {
+  projects: ProjectEntity[];
+  contact: Contact;
+}
+
+const Home: NextPage<HomePageProps> = ({ projects, contact }) => {
   const projectsArray = projects?.map((project) => {
     return {
       ...project,
     };
   });
+
+  console.log(contact);
 
   return (
     <Layout>
@@ -36,6 +45,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
         Meine Projekte
       </Typography>
       <Projects projects={projectsArray} />
+      <Footer contactData={contact} />
     </Layout>
   );
 };
@@ -77,11 +87,23 @@ export async function getStaticProps() {
             }
           }
         }
+        contact {
+          data {
+            attributes {
+              headline
+              emailAdress
+              contactDetails
+            }
+          }
+        }
       }
     `,
   });
 
   return {
-    props: { projects: data.projects.data },
+    props: {
+      projects: data.projects.data,
+      contact: data.contact.data.attributes,
+    },
   };
 }

@@ -85,6 +85,7 @@ export type Contact = {
   __typename?: 'Contact';
   contactDetails?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  emailAdress: Scalars['String'];
   headline: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -103,6 +104,7 @@ export type ContactEntityResponse = {
 
 export type ContactInput = {
   contactDetails?: InputMaybe<Scalars['String']>;
+  emailAdress?: InputMaybe<Scalars['String']>;
   headline?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -163,11 +165,13 @@ export type GenericMorph = About | Contact | Homepage | I18NLocale | Imprint | P
 
 export type Homepage = {
   __typename?: 'Homepage';
+  clientHeadline: Scalars['String'];
+  contactHeadline: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<HomepageRelationResponseCollection>;
+  projectsHeadline: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
-  title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -188,8 +192,10 @@ export type HomepageEntityResponse = {
 };
 
 export type HomepageInput = {
+  clientHeadline?: InputMaybe<Scalars['String']>;
+  contactHeadline?: InputMaybe<Scalars['String']>;
+  projectsHeadline?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type HomepageRelationResponseCollection = {
@@ -1061,12 +1067,73 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type GetContactDetailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetContactDetailsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', title: string, description?: string | null, client: string, isHero?: boolean | null, headerImage: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, images: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } } | null }> } | null };
+
 export type GetProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetProjectsQuery = { __typename?: 'Query', projects?: { __typename?: 'ProjectEntityResponseCollection', data: Array<{ __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', title: string, description?: string | null, client: string, isHero?: boolean | null, headerImage: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null } | null }, images: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string } | null }> } } | null }> } | null };
 
 
+export const GetContactDetailsDocument = gql`
+    query getContactDetails {
+  projects {
+    data {
+      id
+      attributes {
+        title
+        description
+        client
+        isHero
+        headerImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        images {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetContactDetailsQuery__
+ *
+ * To run a query within a React component, call `useGetContactDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetContactDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetContactDetailsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetContactDetailsQuery(baseOptions?: Apollo.QueryHookOptions<GetContactDetailsQuery, GetContactDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetContactDetailsQuery, GetContactDetailsQueryVariables>(GetContactDetailsDocument, options);
+      }
+export function useGetContactDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetContactDetailsQuery, GetContactDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetContactDetailsQuery, GetContactDetailsQueryVariables>(GetContactDetailsDocument, options);
+        }
+export type GetContactDetailsQueryHookResult = ReturnType<typeof useGetContactDetailsQuery>;
+export type GetContactDetailsLazyQueryHookResult = ReturnType<typeof useGetContactDetailsLazyQuery>;
+export type GetContactDetailsQueryResult = Apollo.QueryResult<GetContactDetailsQuery, GetContactDetailsQueryVariables>;
 export const GetProjectsDocument = gql`
     query getProjects {
   projects {
