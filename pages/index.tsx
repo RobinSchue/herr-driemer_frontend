@@ -14,17 +14,14 @@ setConfig({
 
 interface HomePageProps {
   projects: ProjectEntity[];
-  contact: Contact;
 }
 
-const Home: NextPage<HomePageProps> = ({ projects, contact }) => {
+const Home: NextPage<HomePageProps> = ({ projects }) => {
   const projectsArray = projects?.map((project) => {
     return {
       ...project,
     };
   });
-
-  console.log(contact);
 
   return (
     <Layout>
@@ -45,7 +42,6 @@ const Home: NextPage<HomePageProps> = ({ projects, contact }) => {
         Meine Projekte
       </Typography>
       <Projects projects={projectsArray} />
-      <Footer contactData={contact} />
     </Layout>
   );
 };
@@ -84,15 +80,6 @@ export async function getStaticProps() {
                   }
                 }
               }
-            }
-          }
-        }
-        contact {
-          data {
-            attributes {
-              headline
-              emailAdress
-              contactDetails
             }
           }
         }
