@@ -4,12 +4,12 @@ import { Grid, styled, Link as MuiLink, Divider } from "@mui/material";
 import Link from "next/link";
 import Contact from "../Contact/Contact";
 import { Contact as ContactType } from "../../../graphql/generated";
+
 const LinkButton = styled(MuiLink)({
   border: 0,
   borderRadius: 3,
   color: "white",
   height: 48,
-  // padding: "0 30px",
   cursor: "pointer",
 });
 
