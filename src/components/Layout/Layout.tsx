@@ -1,36 +1,26 @@
 /* eslint-disable @next/next/link-passhref */
 import * as React from "react";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { Grid, Link, styled } from "@mui/material";
-import Logo from "../Logo/Logo";
+import { Box, Grid } from "@mui/material";
 
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-
-const LinkButton = styled(Link)({
-  border: 0,
-  borderRadius: 3,
-  color: "white",
-  height: 48,
-  padding: "0 30px",
-  cursor: "pointer",
-});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <Grid
-      container
-      sx={{
-        padding: 2,
-        minHeight: "100vh",
-        background: "black",
-        color: "white",
-      }}
-      direction="column"
-    >
+    <Grid container direction="column">
       <Header />
-      <Grid container xs={12} sx={{ paddingTop: 4, paddingBottom: 8 }}>
+      <Box height={"48px"} />
+      <Grid
+        container
+        xs={12}
+        sx={{
+          padding: 2,
+          paddingTop: 4,
+          paddingBottom: 8,
+          minHeight: "100vh",
+          background: "black",
+          color: "white",
+        }}
+      >
         {children}
       </Grid>
     </Grid>

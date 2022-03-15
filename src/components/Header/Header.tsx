@@ -1,37 +1,65 @@
+/* eslint-disable react/display-name */
 /* eslint-disable @next/next/link-passhref */
 import * as React from "react";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { Grid, styled, Link as MuiLink } from "@mui/material";
-import Logo from "../Logo/Logo";
+import {
+  Grid,
+  AppBar,
+  Toolbar,
+  Typography,
+  Link as MuiLink,
+  styled,
+  css,
+} from "@mui/material";
 import Link from "next/link";
 
-const LinkButton = styled(MuiLink)({
-  border: 0,
-  borderRadius: 3,
-  color: "white",
-  height: 48,
-  padding: "0 30px",
-  cursor: "pointer",
-});
+const StyledLogo = styled("object")(
+  ({ theme: { spacing } }) =>
+    ({ theme: { breakpoints } }) =>
+      css`
+        height: 20px;
+
+        ${breakpoints.up("sm")} {
+          height: 32px;
+        }
+      `
+);
 
 export default function Header() {
   return (
-    <Grid container sx={{ height: 56 }}>
-      <Grid item xs>
-        <Link href="/">
-          <a>
-            <Logo />
-          </a>
-        </Link>
-      </Grid>
-      <Grid container item xs={8} justifyContent="flex-end" spacing={4}>
-        <Grid item textAlign="end">
-          <Link href="/about">
-            <LinkButton>About</LinkButton>
-          </Link>
+    <AppBar
+      position="static"
+      sx={{ background: "black", position: "fixed", zIndex: "2000" }}
+    >
+      <Toolbar disableGutters>
+        <Grid
+          container
+          padding={1}
+          justifyContent="space-between"
+          alignItems="center"
+          paddingLeft={2}
+          paddingRight={2}
+        >
+          <Grid item xs={6} sm>
+            <Grid item container alignSelf="center">
+              <Link href="/" passHref>
+                <MuiLink>
+                  <StyledLogo
+                    data="/logo.svg"
+                    style={{ pointerEvents: "none" }}
+                  />
+                </MuiLink>
+              </Link>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Link href="/about">
+              <Typography variant="h6" sx={{ cursor: "pointer" }}>
+                About
+              </Typography>
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </Toolbar>
+    </AppBar>
   );
 }
