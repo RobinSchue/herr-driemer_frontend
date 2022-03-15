@@ -9,11 +9,11 @@ export interface ProjectsProps {
 
 export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   return (
-    <Grid container xs={12} spacing={2}>
+    <Grid container xs={12} spacing={1}>
       {projects.map((project) => {
         if (project.attributes?.isHero) {
           return (
-            <Grid item xs={8} key={project.id}>
+            <Grid item xs={12} sm={8} key={project.id}>
               <ProjectTile
                 headerImageUrl={
                   project.attributes?.headerImage?.data?.attributes?.url ?? ""
@@ -25,7 +25,7 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
           );
         } else {
           return (
-            <Grid item xs={4} key={project.id}>
+            <Grid item xs={12} sm={4} key={project.id}>
               <ProjectTile
                 headerImageUrl={
                   project.attributes?.headerImage?.data?.attributes?.url ?? ""
