@@ -19,7 +19,7 @@ const StyledFooter = styled("footer")(({ theme: { spacing } }) => ({
 }));
 
 interface FooterProps {
-  contactData: ContactType;
+  contactData?: ContactType;
 }
 
 export default function Footer({ contactData }: FooterProps) {
@@ -29,9 +29,9 @@ export default function Footer({ contactData }: FooterProps) {
       <Grid container item xs={12} className="italic" alignContent="end">
         <Grid item xs={12} paddingBottom={7}>
           <Contact
-            headline={contactData.headline}
-            email={contactData.emailAdress}
-            contactDetails={contactData.contactDetails ?? ""}
+            headline="Kontakt"
+            email="hallo@herrdriemer.de"
+            contactDetails={""}
           />
         </Grid>
 

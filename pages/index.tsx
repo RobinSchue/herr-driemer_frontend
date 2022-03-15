@@ -3,28 +3,20 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import { Projects, ProjectsProps } from "../src/components/Projects";
-import { buildUrl, setConfig } from "cloudinary-build-url";
+import { setConfig } from "cloudinary-build-url";
 import { Typography } from "@mui/material";
-import { Contact, ContactEntity, ProjectEntity } from "../graphql/generated";
 import Footer from "../src/components/Footer/Footer";
 
 setConfig({
   cloudName: "rosccloudinary",
 });
 
-interface HomePageProps {
-  projects: ProjectEntity[];
-  contact: Contact;
-}
-
-const Home: NextPage<HomePageProps> = ({ projects, contact }) => {
+const Home: NextPage<ProjectsProps> = ({ projects }) => {
   const projectsArray = projects?.map((project) => {
     return {
       ...project,
     };
   });
-
-  console.log(contact);
 
   return (
     <Layout>
@@ -45,7 +37,7 @@ const Home: NextPage<HomePageProps> = ({ projects, contact }) => {
         Meine Projekte
       </Typography>
       <Projects projects={projectsArray} />
-      <Footer contactData={contact} />
+      <Footer />
     </Layout>
   );
 };
@@ -87,15 +79,6 @@ export async function getStaticProps() {
             }
           }
         }
-        contact {
-          data {
-            attributes {
-              headline
-              emailAdress
-              contactDetails
-            }
-          }
-        }
       }
     `,
   });
@@ -103,7 +86,6 @@ export async function getStaticProps() {
   return {
     props: {
       projects: data.projects.data,
-      contact: data.contact.data.attributes,
     },
   };
 }
