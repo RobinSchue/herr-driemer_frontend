@@ -5,17 +5,9 @@ import Link from "next/link";
 import Contact from "../Contact/Contact";
 import { Contact as ContactType } from "../../../graphql/generated";
 
-const LinkButton = styled(MuiLink)({
-  border: 0,
-  borderRadius: 3,
-  color: "white",
-  height: 48,
-  cursor: "pointer",
-});
-
 const StyledFooter = styled("footer")(({ theme: { spacing } }) => ({
   width: "100%",
-  padding: `${spacing(4)} 0 ${spacing(8)} 0`,
+  paddingTop: `${spacing(10)}`,
 }));
 
 interface FooterProps {
@@ -25,8 +17,7 @@ interface FooterProps {
 export default function Footer({ contactData }: FooterProps) {
   return (
     <StyledFooter>
-      <Divider sx={{ marginBottom: 4 }} />
-      <Grid container item xs={12} className="italic" alignContent="end">
+      <Grid container item xs={12}>
         <Grid item xs={12} paddingBottom={7}>
           <Contact
             headline="Kontakt"
@@ -35,18 +26,11 @@ export default function Footer({ contactData }: FooterProps) {
           />
         </Grid>
 
-        <Grid item textAlign="end" sx={{ marginRight: 4 }}>
-          <LinkButton
-            target="_blank"
-            href="https://www.instagram.com/driem.works"
-            rel="noreferrer"
-          >
-            Instagram
-          </LinkButton>
-        </Grid>
-        <Grid item textAlign="end">
+        <Grid item>
           <Link href="/imprint">
-            <LinkButton>Impressum</LinkButton>
+            <MuiLink color={"inherit"} variant="h6" underline="hover">
+              Impressum
+            </MuiLink>
           </Link>
         </Grid>
       </Grid>
