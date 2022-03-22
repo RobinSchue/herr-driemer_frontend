@@ -13,7 +13,7 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
       {projects.map((project) => {
         if (project.attributes?.isHero) {
           return (
-            <Grid item xs={12} sm={8} key={project.id}>
+            <Grid item xs={12} sm={4} key={project.id}>
               <ProjectTile
                 headerImageUrl={
                   project.attributes?.headerImage?.data?.attributes?.url ?? ""
