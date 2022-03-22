@@ -1,8 +1,8 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
 // Create a theme instance.
-const theme = createTheme({
+const muiTheme = createTheme({
   typography: {
     fontFamily: [
       "Source Sans Pro",
@@ -31,5 +31,7 @@ const theme = createTheme({
     },
   },
 });
+
+const theme = responsiveFontSizes(muiTheme, { factor: 2 });
 
 export default theme;
