@@ -12,12 +12,17 @@ const Imprint: NextPage<ProjectsProps> = () => {
         <Head>
           <title>Herr Driemer</title>
         </Head>
-        <Typography variant="h5" paragraph>
+        <Typography variant="h4" paragraph>
           Impressum
         </Typography>
-        <Typography>Lukas Driemer </Typography>
-        <Typography>Dieckstraße 4</Typography>
-        <Typography>48145 Münster</Typography>
+        <Typography>
+          Lukas Driemer <br />
+          Dieckstraße 4<br />
+          48145 Münster
+          <br />
+          <br />
+          +49 176 303 214 99
+        </Typography>
       </div>
     </Layout>
   );

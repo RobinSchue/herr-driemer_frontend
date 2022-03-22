@@ -27,7 +27,7 @@ export default function Footer({ contactData }: FooterProps) {
         </Grid>
 
         <Grid item>
-          <Link href="/imprint">
+          <Link href="/imprint" scroll>
             <MuiLink color={"inherit"} variant="h6" underline="hover">
               Impressum
             </MuiLink>
