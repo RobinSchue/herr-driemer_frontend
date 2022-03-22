@@ -14,31 +14,21 @@ export default function Contact({
   contactDetails,
 }: ContactProps) {
   return (
-    <Grid container item xs={12}>
-      <Grid item xs={12} paddingBottom={4}>
+    <Grid container item xs={12} columnGap={4} rowGap={3}>
+      <Grid item xs={12} paddingBottom={3}>
         <Typography variant="h4" paragraph marginBottom={4}>
           {headline}
         </Typography>
       </Grid>
-      <Grid item xs paddingBottom={7}>
+      <Grid item xs paddingBottom={3}>
         <Typography variant="h6">E-Mail</Typography>
         <Typography variant="h4">{email}</Typography>
       </Grid>
-      <Grid item xs paddingBottom={7}>
+      <Grid item xs paddingBottom={3}>
         <Typography variant="h6">Phone</Typography>
-
-        <Link
-          href="https://www.instagram.com/driem.works/"
-          underline="hover"
-          variant="h4"
-          color={"inherit"}
-          target="_blank"
-          rel="noreferrer"
-        >
-          +49 176 303 214 99
-        </Link>
+        <Typography variant="h4">+49 176 303 214 99</Typography>
       </Grid>
-      <Grid item xs paddingBottom={7}>
+      <Grid item xs paddingBottom={3}>
         <Typography variant="h6">Instagram</Typography>
 
         <Link
