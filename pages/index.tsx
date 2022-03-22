@@ -6,6 +6,7 @@ import { Projects, ProjectsProps } from "../src/components/Projects";
 import { setConfig } from "cloudinary-build-url";
 import { Typography } from "@mui/material";
 import Footer from "../src/components/Footer/Footer";
+import Image from "next/image";
 
 setConfig({
   cloudName: "rosccloudinary",
@@ -20,6 +21,15 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
 
   return (
     <Layout>
+      <div className="backgroundImage">
+        <Image
+          alt="background"
+          src="/background.png"
+          layout="fill"
+          objectFit="cover"
+          quality={60}
+        />
+      </div>
       <Head>
         <title>Herr Driemer</title>
         <meta
