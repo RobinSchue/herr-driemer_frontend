@@ -9,7 +9,7 @@ export interface ProjectsProps {
 
 export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   return (
-    <Grid container xs={12} spacing={1}>
+    <Grid container xs={12} spacing={0.5}>
       {projects.map((project) => {
         if (project.attributes?.isHero) {
           return (
