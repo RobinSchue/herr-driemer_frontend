@@ -21,7 +21,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
 
   return (
     <Layout>
-      <div className="backgroundImage">
+      {/* <div className="backgroundImage">
         <Image
           alt="background"
           src="/background.png"
@@ -29,7 +29,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
           objectFit="cover"
           quality={60}
         />
-      </div>
+      </div> */}
       <Head>
         <title>Herr Driemer</title>
         <meta
@@ -43,9 +43,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
         <meta name="robots" content="all" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Typography variant="h5" paragraph>
-        Meine Projekte
-      </Typography>
+
       <Projects projects={projectsArray} />
       <Footer />
     </Layout>
