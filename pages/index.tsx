@@ -62,7 +62,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query getProjects {
-        projects {
+        projects(sort: "createdAt:desc", pagination: { start: 1, limit: 100 }) {
           data {
             id
             attributes {
