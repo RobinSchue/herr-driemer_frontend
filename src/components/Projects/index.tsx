@@ -1,7 +1,9 @@
-import { Grid, ImageList, ImageListItem, Typography } from "@mui/material";
+/* eslint-disable @next/next/no-img-element */
+import { Grid, ImageList, ImageListItem } from "@mui/material";
 import React from "react";
-import { Project, ProjectEntity } from "../../../graphql/generated";
-import { ProjectTile } from "../ProjectTile";
+import { ProjectEntity } from "../../../graphql/generated";
+import { buildUrl } from "cloudinary-build-url";
+import Image from "next/image";
 
 export interface ProjectsProps {
   projects: ProjectEntity[];
@@ -10,21 +12,38 @@ export interface ProjectsProps {
 export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   return (
     <Grid container xs={12}>
-      <ImageList variant="masonry" cols={3} gap={8}>
-        {projects.map((project) => (
-          <ImageListItem key={project.id}>
-            <img
-              src={`${
-                project.attributes?.headerImage?.data?.attributes?.url ?? ""
-              }?w=248&fit=crop&auto=format`}
-              srcSet={`${
-                project.attributes?.headerImage?.data?.attributes?.url ?? ""
-              }?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={project.attributes?.title}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
+      <ImageList variant="masonry" gap={8} cols={3}>
+        {projects.map((project: ProjectEntity) => {
+          const url = buildUrl(
+            project.attributes?.headerImage?.data?.attributes?.url || "",
+            {
+              cloud: {
+                cloudName: "rosccloudinary",
+              },
+              transformations: {
+                width: 1000,
+              },
+            }
+          );
+          const cloudinaryUrl =
+            project.attributes?.headerImage.data?.attributes?.url || "";
+
+          const getInfoUrl =
+            cloudinaryUrl.slice(0, 55) + "w_600/" + cloudinaryUrl.slice(55);
+
+          console.log(getInfoUrl);
+
+          return (
+            <ImageListItem key={project.id}>
+              <img
+                src={url}
+                srcSet={url}
+                alt={project.attributes?.title}
+                loading="lazy"
+              />
+            </ImageListItem>
+          );
+        })}
       </ImageList>
     </Grid>
   );
