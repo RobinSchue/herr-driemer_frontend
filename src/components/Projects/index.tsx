@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, ImageList, ImageListItem, Typography } from "@mui/material";
 import React from "react";
 import { Project, ProjectEntity } from "../../../graphql/generated";
 import { ProjectTile } from "../ProjectTile";
@@ -9,34 +9,23 @@ export interface ProjectsProps {
 
 export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   return (
-    <Grid container xs={12} spacing={0.5}>
-      {projects.map((project) => {
-        if (project.attributes?.isHero) {
-          return (
-            <Grid item xs={12} sm={4} key={project.id}>
-              <ProjectTile
-                headerImageUrl={
-                  project.attributes?.headerImage?.data?.attributes?.url ?? ""
-                }
-                title={project.attributes?.title ?? "NO"}
-                client={project.attributes?.client ?? "NO"}
-              />
-            </Grid>
-          );
-        } else {
-          return (
-            <Grid item xs={12} sm={4} key={project.id}>
-              <ProjectTile
-                headerImageUrl={
-                  project.attributes?.headerImage?.data?.attributes?.url ?? ""
-                }
-                title={project.attributes?.title ?? "NO"}
-                client={project.attributes?.client ?? "NO"}
-              />
-            </Grid>
-          );
-        }
-      })}
+    <Grid container xs={12}>
+      <ImageList variant="masonry" cols={3} gap={8}>
+        {projects.map((project) => (
+          <ImageListItem key={project.id}>
+            <img
+              src={`${
+                project.attributes?.headerImage?.data?.attributes?.url ?? ""
+              }?w=248&fit=crop&auto=format`}
+              srcSet={`${
+                project.attributes?.headerImage?.data?.attributes?.url ?? ""
+              }?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={project.attributes?.title}
+              loading="lazy"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
     </Grid>
   );
 };
