@@ -22,6 +22,7 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
               }?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={project.attributes?.title}
               loading="lazy"
+                placeholder="empty"
             />
           </ImageListItem>
         ))}

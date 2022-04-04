@@ -1,58 +1,57 @@
 import { ApolloClient, gql, InMemoryCache } from "@apollo/react-hooks";
-import { Typography } from "@mui/material";
-import type { NextPage } from "next";
+import { Grid, Typography } from "@mui/material";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
-import { Projects, ProjectsProps } from "../src/components/Projects";
+import ReactMarkdown from "react-markdown";
 
-const Imprint: NextPage<ProjectsProps> = () => {
+const Imprint: NextPage = ({
+  imprint,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout>
-      <div>
-        <Head>
-          <title>Herr Driemer</title>
-        </Head>
-        <Typography variant="h4" paragraph>
-          Impressum
-        </Typography>
-        <Typography>
-          Lukas Driemer <br />
-          Dieckstraße 4<br />
-          48145 Münster
-          <br />
-          <br />
-          +49 176 303 214 99
-        </Typography>
-      </div>
+      <Head>
+        <title>{imprint.headline}</title>
+      </Head>
+      <Grid container xs={12} md={6}>
+        <Grid item>
+          <Typography variant="h4" paragraph marginBottom={4}>
+            {imprint.headline}
+          </Typography>
+          <ReactMarkdown>{imprint.text}</ReactMarkdown>
+        </Grid>
+      </Grid>
     </Layout>
   );
 };
 
 export default Imprint;
 
-// export async function getStaticProps() {
-//   const client = new ApolloClient({
-//     uri: process.env.REACT_APP_BACKEND_URL,
-//     cache: new InMemoryCache(),
-//     connectToDevTools: true,
-//   });
+export const getStaticProps: GetStaticProps = async (context) => {
+  const client = new ApolloClient({
+    uri: process.env.REACT_APP_BACKEND_URL,
+    cache: new InMemoryCache(),
+    connectToDevTools: true,
+  });
 
-//   const { data } = await client.query({
-//     query: gql`
-//       query getProjects {
-//         projects {
-//           data {
-//             id
-//             attributes {
-//               title
-//             }
-//           }
-//         }
-//       }
-//     `,
-//   });
+  const { data } = await client.query({
+    query: gql`
+      query getImprint {
+        imprint {
+          data {
+            attributes {
+              headline
+              text
+            }
+          }
+        }
+      }
+    `,
+  });
 
-//   return {
-//     props: { projects: data.projects.data },
-//   };
-// }
+  return {
+    props: {
+      imprint: data.imprint.data.attributes,
+    },
+  };
+};
