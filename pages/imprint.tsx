@@ -31,7 +31,7 @@ const Imprint: NextPage<ImprintProps> = ({ headline, text }) => {
 
 export default Imprint;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps<ImprintProps> = async (context) => {
   const client = new ApolloClient({
     uri: process.env.REACT_APP_BACKEND_URL,
     cache: new InMemoryCache(),
