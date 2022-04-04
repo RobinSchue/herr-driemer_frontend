@@ -4,21 +4,25 @@ import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import ReactMarkdown from "react-markdown";
+import { ImprintEntity } from "../graphql/generated";
 
-const Imprint: NextPage = ({
-  imprint,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+export interface ImprintProps {
+  headline: string;
+  text: string;
+}
+
+const Imprint: NextPage<ImprintProps> = ({ headline, text }) => {
   return (
     <Layout>
       <Head>
-        <title>{imprint.headline}</title>
+        <title>{headline}</title>
       </Head>
       <Grid container xs={12} md={6}>
         <Grid item>
           <Typography variant="h4" paragraph marginBottom={4}>
-            {imprint.headline}
+            {headline}
           </Typography>
-          <ReactMarkdown>{imprint.text}</ReactMarkdown>
+          <ReactMarkdown>{text || ""}</ReactMarkdown>
         </Grid>
       </Grid>
     </Layout>
@@ -49,9 +53,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     `,
   });
 
+  const headline = data?.imprint?.data?.attributes?.headline;
+  const text = data?.imprint?.data?.attributes?.text;
+
   return {
     props: {
-      imprint: data.imprint.data.attributes,
+      headline,
+      text,
     },
   };
 };
