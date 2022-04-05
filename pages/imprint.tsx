@@ -11,7 +11,10 @@ export interface ImprintProps {
   text: string;
 }
 
-const Imprint: NextPage<ImprintProps> = ({ headline, text }) => {
+const Imprint: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  headline,
+  text,
+}) => {
   return (
     <Layout>
       <Head>
@@ -53,13 +56,10 @@ export const getStaticProps: GetStaticProps<ImprintProps> = async (context) => {
     `,
   });
 
-  const headline = data?.imprint?.data?.attributes?.headline;
-  const text = data?.imprint?.data?.attributes?.text;
-
   return {
     props: {
-      headline,
-      text,
+      headline: data.imprint.data.attributes.headline,
+      text: data.imprint.data.attributes.text,
     },
   };
 };
