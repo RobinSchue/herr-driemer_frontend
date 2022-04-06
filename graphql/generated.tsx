@@ -87,6 +87,7 @@ export type Contact = {
   createdAt?: Maybe<Scalars['DateTime']>;
   emailAdress: Scalars['String'];
   headline: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -106,6 +107,7 @@ export type ContactInput = {
   contactDetails?: InputMaybe<Scalars['String']>;
   emailAdress?: InputMaybe<Scalars['String']>;
   headline?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
