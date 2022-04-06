@@ -1,12 +1,10 @@
 import { ApolloClient, gql, InMemoryCache } from "@apollo/react-hooks";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
 import { Projects, ProjectsProps } from "../src/components/Projects";
 import { setConfig } from "cloudinary-build-url";
-import { Typography } from "@mui/material";
 import Footer from "../src/components/Footer/Footer";
-import Image from "next/image";
 
 setConfig({
   cloudName: "rosccloudinary",
@@ -52,7 +50,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
 
 export default Home;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const client = new ApolloClient({
     uri: process.env.REACT_APP_BACKEND_URL,
     cache: new InMemoryCache(),
@@ -96,4 +94,4 @@ export async function getStaticProps() {
       projects: data.projects.data,
     },
   };
-}
+};
