@@ -11,18 +11,18 @@ export interface ImprintProps {
   text: string;
 }
 
-const Imprint: NextPage = () => {
+const Imprint: NextPage<ImprintProps> = ({ headline, text }) => {
   return (
     <Layout>
       <Head>
-        <title>{"headline"}</title>
+        <title>{headline}</title>
       </Head>
       <Grid container xs={12} md={6}>
         <Grid item>
           <Typography variant="h4" paragraph marginBottom={4}>
-            {"headline"}
+            {headline}
           </Typography>
-          <ReactMarkdown>{"text" || ""}</ReactMarkdown>
+          <ReactMarkdown>{text || ""}</ReactMarkdown>
         </Grid>
       </Grid>
     </Layout>
@@ -31,32 +31,32 @@ const Imprint: NextPage = () => {
 
 export default Imprint;
 
-// export const getStaticProps: GetStaticProps<ImprintProps> = async (context) => {
-//   const client = new ApolloClient({
-//     uri: process.env.REACT_APP_BACKEND_URL,
-//     cache: new InMemoryCache(),
-//     connectToDevTools: true,
-//   });
+export const getStaticProps: GetStaticProps = async (context) => {
+  const client = new ApolloClient({
+    uri: process.env.REACT_APP_BACKEND_URL,
+    cache: new InMemoryCache(),
+    connectToDevTools: true,
+  });
 
-//   const { data } = await client.query({
-//     query: gql`
-//       query getImprint {
-//         imprint {
-//           data {
-//             attributes {
-//               headline
-//               text
-//             }
-//           }
-//         }
-//       }
-//     `,
-//   });
+  const { data } = await client.query({
+    query: gql`
+      query getImprint {
+        imprint {
+          data {
+            attributes {
+              headline
+              text
+            }
+          }
+        }
+      }
+    `,
+  });
 
-//   return {
-//     props: {
-//       headline: data.imprint.data.attributes.headline,
-//       text: data.imprint.data.attributes.text,
-//     },
-//   };
-// };
+  const headline: string = data?.imprint?.data?.attributes?.headline;
+  const text: string = data?.imprint?.data?.attributes?.text;
+
+  return {
+    props: { headline: headline, text: text },
+  };
+};
