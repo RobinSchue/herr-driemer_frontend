@@ -6,6 +6,7 @@ export const PROJECTS_QUERY = gql`
       data {
         id
         attributes {
+          order
           title
           description
           client
