@@ -2,15 +2,21 @@ import { ApolloClient, gql, InMemoryCache } from "@apollo/react-hooks";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/Layout/Layout";
-import { Projects, ProjectsProps } from "../src/components/Projects";
+import { Projects } from "../src/components/Projects";
 import { setConfig } from "cloudinary-build-url";
 import Footer from "../src/components/Footer/Footer";
+import { Contact, ProjectEntity } from "../graphql/generated";
 
 setConfig({
   cloudName: "rosccloudinary",
 });
 
-const Home: NextPage<ProjectsProps> = ({ projects }) => {
+interface HomePageProps {
+  projects: ProjectEntity[];
+  contactData: Contact;
+}
+
+const Home: NextPage<HomePageProps> = ({ projects, contactData }) => {
   const projectsArray = projects?.map((project) => {
     return {
       ...project,
@@ -43,7 +49,7 @@ const Home: NextPage<ProjectsProps> = ({ projects }) => {
       </Head>
 
       <Projects projects={projectsArray} />
-      <Footer />
+      {contactData && <Footer contactData={contactData} />}
     </Layout>
   );
 };
@@ -57,7 +63,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     connectToDevTools: true,
   });
 
-  const { data } = await client.query({
+  const { data: projectData } = await client.query({
     query: gql`
       query getProjects {
         projects(sort: "order:asc", pagination: { start: 0, limit: 100 }) {
@@ -90,9 +96,29 @@ export const getStaticProps: GetStaticProps = async (context) => {
     `,
   });
 
+  const { data: contactData } = await client.query({
+    query: gql`
+      query getContact {
+        contact {
+          data {
+            attributes {
+              headline
+              phone
+              instagramUrl
+              instagramName
+              emailAdress
+              contactDetails
+            }
+          }
+        }
+      }
+    `,
+  });
+
   return {
     props: {
-      projects: data.projects.data,
+      projects: projectData.projects.data,
+      contactData: contactData.contact.data.attributes,
     },
   };
 };

@@ -38,7 +38,6 @@ export default function About({ headline, text, imageUrl }: AboutProps) {
           <Typography variant="body1">{text}</Typography>
         </Grid>
       </Grid>
-      <Footer />
     </Grid>
   );
 }
