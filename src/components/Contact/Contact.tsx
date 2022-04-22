@@ -5,13 +5,18 @@ import { Grid, Link, Typography } from "@mui/material";
 export interface ContactProps {
   headline: string;
   email: string;
-  contactDetails: string;
+  phoneNumber: string;
+  instagramName: string;
+  instagramUrl: string;
 }
 
 export default function Contact({
   headline,
   email,
-  contactDetails,
+  phoneNumber,
+
+  instagramName,
+  instagramUrl,
 }: ContactProps) {
   return (
     <Grid container item xs={12} columnGap={4} rowGap={3}>
@@ -26,25 +31,24 @@ export default function Contact({
       </Grid>
       <Grid item xs paddingBottom={3}>
         <Typography variant="h6">Phone</Typography>
-        <Typography variant="h5">+49 176 303 214 99</Typography>
+        <Typography variant="h5">{phoneNumber}</Typography>
       </Grid>
       <Grid item xs paddingBottom={3}>
         <Typography variant="h6">Instagram</Typography>
 
         <Link
-          href="https://www.instagram.com/driem.works/"
+          href={instagramUrl}
           underline="hover"
           variant="h5"
           color={"inherit"}
           target="_blank"
           rel="noreferrer"
         >
-          @driem.works
+          {instagramName}
         </Link>
-      </Grid>
-      <Grid item xs paddingBottom={7}>
-        <Typography variant="body1">{contactDetails}</Typography>
       </Grid>
     </Grid>
   );
 }
+
+// +49 176 303 214 99

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 import * as React from "react";
-import { Grid, styled, Link as MuiLink, Divider } from "@mui/material";
+import { Grid, styled, Link as MuiLink } from "@mui/material";
 import Link from "next/link";
 import Contact from "../Contact/Contact";
 import { Contact as ContactType } from "../../../graphql/generated";
@@ -11,7 +11,7 @@ const StyledFooter = styled("footer")(({ theme: { spacing } }) => ({
 }));
 
 interface FooterProps {
-  contactData?: ContactType;
+  contactData: ContactType;
 }
 
 export default function Footer({ contactData }: FooterProps) {
@@ -20,9 +20,11 @@ export default function Footer({ contactData }: FooterProps) {
       <Grid container item xs={12}>
         <Grid item xs={12} paddingBottom={7}>
           <Contact
-            headline="Kontakt"
-            email="hallo@herrdriemer.de"
-            contactDetails={""}
+            headline={contactData.headline}
+            email={contactData.emailAdress}
+            instagramName={contactData.instagramName || ""}
+            instagramUrl={contactData.instagramUrl || ""}
+            phoneNumber={contactData.phone}
           />
         </Grid>
 

@@ -26,10 +26,10 @@ export type Scalars = {
 export type About = {
   __typename?: 'About';
   createdAt?: Maybe<Scalars['DateTime']>;
-  headline?: Maybe<Scalars['String']>;
+  headline: Scalars['String'];
   images?: Maybe<UploadFileRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  text?: Maybe<Scalars['String']>;
+  text: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -87,7 +87,9 @@ export type Contact = {
   createdAt?: Maybe<Scalars['DateTime']>;
   emailAdress: Scalars['String'];
   headline: Scalars['String'];
-  phone?: Maybe<Scalars['String']>;
+  instagramName?: Maybe<Scalars['String']>;
+  instagramUrl?: Maybe<Scalars['String']>;
+  phone: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -107,6 +109,8 @@ export type ContactInput = {
   contactDetails?: InputMaybe<Scalars['String']>;
   emailAdress?: InputMaybe<Scalars['String']>;
   headline?: InputMaybe<Scalars['String']>;
+  instagramName?: InputMaybe<Scalars['String']>;
+  instagramUrl?: InputMaybe<Scalars['String']>;
   phone?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
