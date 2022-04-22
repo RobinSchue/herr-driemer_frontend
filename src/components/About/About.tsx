@@ -11,9 +11,10 @@ const StyledImageContainer = styled("footer")(({ theme: { spacing } }) => ({
 export interface AboutProps {
   headline: string;
   text: string;
+  imageUrl: string;
 }
 
-export default function About({ headline, text }: AboutProps) {
+export default function About({ headline, text, imageUrl }: AboutProps) {
   return (
     <Grid container item xs={12}>
       {/* <Grid item xs={12}>
@@ -25,10 +26,10 @@ export default function About({ headline, text }: AboutProps) {
         <Grid item xs={12} sm={4} paddingBottom={7}>
           <StyledImageContainer>
             <Image
-              src="/luke-portrait.jpg"
+              src={imageUrl}
               alt="Lukas Portrait"
-              width={2200}
-              height={1467}
+              width={1100}
+              height={733}
               layout="responsive"
             />
           </StyledImageContainer>
