@@ -26,10 +26,10 @@ export type Scalars = {
 export type About = {
   __typename?: 'About';
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
   headline?: Maybe<Scalars['String']>;
   images?: Maybe<UploadFileRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  text?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -52,10 +52,10 @@ export type AboutEntityResponse = {
 };
 
 export type AboutInput = {
-  description?: InputMaybe<Scalars['String']>;
   headline?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  text?: InputMaybe<Scalars['String']>;
 };
 
 export type BooleanFilterInput = {

@@ -1,48 +1,53 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/react-hooks";
-import { Typography } from "@mui/material";
-import type { NextPage } from "next";
+import { InMemoryCache, ApolloClient, gql } from "@apollo/react-hooks";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import About from "../src/components/About/About";
 import Layout from "../src/components/Layout/Layout";
-import { Projects, ProjectsProps } from "../src/components/Projects";
 
-const Imprint: NextPage<ProjectsProps> = () => {
+export interface AboutProps {
+  headline: string;
+  text: string;
+}
+
+const AboutPage: NextPage<AboutProps> = ({ headline, text }) => {
   return (
     <Layout>
-      <div>
-        <Head>
-          <title>Herr Driemer</title>
-        </Head>
-        <Typography variant="h5">About</Typography>
-      </div>
+      <Head>
+        <title>Herr Driemer</title>
+      </Head>
+      <About headline={headline} text={text} />
     </Layout>
   );
 };
 
-export default Imprint;
+export default AboutPage;
 
-// export async function getStaticProps() {
-//   const client = new ApolloClient({
-//     uri: process.env.REACT_APP_BACKEND_URL,
-//     cache: new InMemoryCache(),
-//     connectToDevTools: true,
-//   });
+export const getStaticProps: GetStaticProps = async (context) => {
+  const client = new ApolloClient({
+    uri: process.env.REACT_APP_BACKEND_URL,
+    cache: new InMemoryCache(),
+    connectToDevTools: true,
+  });
 
-//   const { data } = await client.query({
-//     query: gql`
-//       query getProjects {
-//         projects {
-//           data {
-//             id
-//             attributes {
-//               title
-//             }
-//           }
-//         }
-//       }
-//     `,
-//   });
+  const { data } = await client.query({
+    query: gql`
+      query getAbout {
+        about {
+          data {
+            attributes {
+              headline
+              text
+            }
+          }
+        }
+      }
+    `,
+  });
 
-//   return {
-//     props: { projects: data.projects.data },
-//   };
-// }
+  const headline: string = data?.about?.data?.attributes?.headline;
+  const text: string = data?.about?.data?.attributes?.text;
+
+  return {
+    props: { headline: headline, text: text },
+  };
+};
