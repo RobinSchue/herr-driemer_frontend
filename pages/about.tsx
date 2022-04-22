@@ -7,15 +7,16 @@ import Layout from "../src/components/Layout/Layout";
 export interface AboutProps {
   headline: string;
   text: string;
+  imageUrl: string;
 }
 
-const AboutPage: NextPage<AboutProps> = ({ headline, text }) => {
+const AboutPage: NextPage<AboutProps> = ({ headline, text, imageUrl }) => {
   return (
     <Layout>
       <Head>
         <title>Herr Driemer</title>
       </Head>
-      <About headline={headline} text={text} />
+      <About headline={headline} text={text} imageUrl={imageUrl} />
     </Layout>
   );
 };
@@ -37,6 +38,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
             attributes {
               headline
               text
+              images {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -46,8 +54,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const headline: string = data?.about?.data?.attributes?.headline;
   const text: string = data?.about?.data?.attributes?.text;
+  const imageUrl: string =
+    data?.about?.data?.attributes?.images?.data?.[0]?.attributes?.url;
 
   return {
-    props: { headline: headline, text: text },
+    props: { headline: headline, text: text, imageUrl: imageUrl },
   };
 };
