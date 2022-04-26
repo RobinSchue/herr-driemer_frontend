@@ -19,21 +19,16 @@ export default function Contact({
   instagramUrl,
 }: ContactProps) {
   return (
-    <Grid container item xs={12} columnGap={4} rowGap={3}>
-      {/* <Grid item xs={12} paddingBottom={3}>
-        <Typography variant="h5" paragraph marginBottom={4}>
-          {headline}
-        </Typography>
-      </Grid> */}
-      <Grid item xs paddingBottom={3}>
+    <Grid container item xs={12} rowGap={3}>
+      <Grid item xs={12} sm={4}>
         <Typography variant="h6">E-Mail</Typography>
         <Typography variant="h5">{email}</Typography>
       </Grid>
-      <Grid item xs paddingBottom={3}>
+      <Grid item xs={12} sm={4}>
         <Typography variant="h6">Phone</Typography>
         <Typography variant="h5">{phoneNumber}</Typography>
       </Grid>
-      <Grid item xs paddingBottom={3}>
+      <Grid item xs={12} sm={4}>
         <Typography variant="h6">Instagram</Typography>
 
         <Link
@@ -50,5 +45,3 @@ export default function Contact({
     </Grid>
   );
 }
-
-// +49 176 303 214 99
