@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/link-passhref */
 import { Box, Modal } from "@mui/material";
 import * as React from "react";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import SimpleImageSlider from "react-simple-image-slider";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { styled } from "@mui/styles";
 export interface ImageSliderProps {
   images: string[];
   isOpen: boolean;
@@ -39,14 +40,20 @@ export const ImageSlider = ({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
-        <SimpleImageSlider
-          width={896}
-          height={504}
-          images={images}
-          showBullets={true}
-          showNavs={true}
-        />
+      <Box>
+        <Slider
+          adaptiveHeight={true}
+          dots={true}
+          infinite={true}
+          speed={1000}
+          slidesToScroll={1}
+          arrows={true}
+          slidesToShow={1}
+        >
+          {images.map((image, key) => (
+            <img key={key} src={image} alt="project" width="100%" />
+          ))}
+        </Slider>
       </Box>
     </Modal>
   );

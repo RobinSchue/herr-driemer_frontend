@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.4.2",
     "@mui/styles": "^5.4.2",
+    "@types/slick-carousel": "^1.6.37",
     "apollo-boost": "^0.4.9",
     "cloudinary-build-url": "^0.2.4",
     "graphql": "^16.3.0",
@@ -25,11 +26,13 @@
     "react-apollo": "^3.1.5",
     "react-dom": "17.0.2",
     "react-markdown": "^8.0.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.2.1",
     "react-simple-image-slider": "^2.4.1",
     "react-slick": "^0.29.0",
     "react-swipeable-views": "^0.14.0",
-    "react-swipeable-views-utils": "^0.14.0"
+    "react-swipeable-views-utils": "^0.14.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",
