@@ -1,18 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import { Grid, ImageList, ImageListItem } from "@mui/material";
 import React, { useRef, useState } from "react";
-import { ProjectEntity, UploadFileEntity } from "../../../graphql/generated";
+import { ProjectEntity } from "../../../graphql/generated";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import {
   Grid,
-  Hidden,
   ImageList,
   ImageListItem,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Box } from "@mui/system";
 
 export interface ProjectsProps {
   projects: ProjectEntity[];

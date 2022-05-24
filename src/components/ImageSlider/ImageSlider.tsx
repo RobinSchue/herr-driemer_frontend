@@ -6,7 +6,7 @@ import * as React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { styled } from "@mui/styles";
+
 export interface ImageSliderProps {
   images: string[];
   isOpen: boolean;
@@ -18,21 +18,6 @@ export const ImageSlider = ({
   isOpen,
   handleClose,
 }: ImageSliderProps): JSX.Element => {
-  const style = {
-    position: "absolute" as "absolute",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    maxheight: "70vh",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-  };
-
   return (
     <Modal
       open={isOpen}
@@ -40,7 +25,16 @@ export const ImageSlider = ({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box>
+      <Box
+        style={{
+          maxWidth: "80%",
+          maxHeight: "80%",
+          position: "absolute" as "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <Slider
           adaptiveHeight={true}
           dots={true}
@@ -51,7 +45,7 @@ export const ImageSlider = ({
           slidesToShow={1}
         >
           {images.map((image, key) => (
-            <img key={key} src={image} alt="project" width="100%" />
+            <img key={key} src={image} alt="project" />
           ))}
         </Slider>
       </Box>
