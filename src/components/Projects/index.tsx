@@ -3,12 +3,24 @@ import { Grid, ImageList, ImageListItem } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { ProjectEntity, UploadFileEntity } from "../../../graphql/generated";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import {
+  Grid,
+  Hidden,
+  ImageList,
+  ImageListItem,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { Box } from "@mui/system";
 
 export interface ProjectsProps {
   projects: ProjectEntity[];
 }
 
 export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   const [isOpen, setIsOpen] = useState(false);
   const [images, setImages] = useState<string[]>();
   const slider = useRef(null);
@@ -18,7 +30,7 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
 
   return (
     <Grid container xs={12}>
-      <ImageList variant="masonry" cols={3} gap={8}>
+      <ImageList variant="masonry" cols={isDesktop ? 3 : 1} gap={8}>
         {projects.map((project) => {
           const images = project?.attributes?.images.data
             ? project.attributes.images.data.map(
