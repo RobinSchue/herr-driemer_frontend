@@ -1,3 +1,6 @@
+@import "./slick-theme.css";
+@import "./slick.css";
+
 html,
 body {
   padding: 0;
