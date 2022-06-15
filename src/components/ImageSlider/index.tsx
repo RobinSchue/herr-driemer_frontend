@@ -6,6 +6,8 @@ import { StyledImage, StyledSwiperContainer } from "./swiper.styled";
 import { Keyboard, Lazy, Navigation, Pagination } from "swiper";
 
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export interface ImageSliderProps {
   images: string[];
@@ -14,7 +16,10 @@ export interface ImageSliderProps {
 export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
   return (
     <StyledSwiperContainer
-      modules={[Navigation, Pagination, Keyboard, Lazy]}
+      modules={[Navigation, Keyboard, Lazy]}
+      keyboard={{
+        enabled: true,
+      }}
       navigation={true}
       spaceBetween={64}
       slidesPerView={1}
@@ -22,7 +27,6 @@ export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
       loop={false}
       touchRatio={1.5}
       effect={"flip"}
-      pagination={{ clickable: true }}
       lazy={true}
     >
       {images.map((image) => (

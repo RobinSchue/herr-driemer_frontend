@@ -8,6 +8,7 @@ import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
 import createEmotionCache from "../src/hooks/createEmotionCache";
 import { StrapiApolloProvider } from "../src/grahql/apollo";
+import "../styles/globals.css";
 
 interface MyAppProps extends AppProps {
   emotionCache: EmotionCache;
