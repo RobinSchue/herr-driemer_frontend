@@ -3,7 +3,7 @@ import React from "react";
 import { SwiperSlide } from "swiper/react";
 
 import { StyledImage, StyledSwiperContainer } from "./swiper.styled";
-import { Navigation, Pagination, Scrollbar } from "swiper";
+import { Keyboard, Lazy, Navigation, Pagination } from "swiper";
 
 import "swiper/css";
 
@@ -14,16 +14,16 @@ export interface ImageSliderProps {
 export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
   return (
     <StyledSwiperContainer
-      modules={[Navigation, Pagination, Scrollbar]}
+      modules={[Navigation, Pagination, Keyboard, Lazy]}
       navigation={true}
-      spaceBetween={0}
+      spaceBetween={64}
       slidesPerView={1}
       speed={100}
       loop={false}
       touchRatio={1.5}
       effect={"flip"}
       pagination={{ clickable: true }}
-      className="mySwiper"
+      lazy={true}
     >
       {images.map((image) => (
         <SwiperSlide key={image}>

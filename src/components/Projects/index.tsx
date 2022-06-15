@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useRef, useState } from "react";
 import { ProjectEntity } from "../../../graphql/generated";
+import CloseIcon from "@mui/icons-material/Close";
 
 import {
+  Backdrop,
   Box,
   Grid,
   ImageList,
@@ -25,7 +27,9 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   const slider = useRef(null);
 
   const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <Grid container xs={12}>
@@ -50,7 +54,8 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
                 loading="lazy"
                 placeholder="empty"
                 onClick={() => {
-                  setImages(images), handleOpen();
+                  setImages(images);
+                  handleOpen();
                 }}
               />
             </ImageListItem>
@@ -63,8 +68,21 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+        sx={{ zIndex: 9999 }}
       >
-        <ImageSlider images={images ? images : []} />
+        <Box>
+          {/* <CloseIcon
+            htmlColor="red"
+            sx={{ zIndex: 10000 }}
+            onClick={handleClose}
+          /> */}
+          <ImageSlider images={images ? images : []} />
+        </Box>
       </Modal>
     </Grid>
   );
