@@ -27,18 +27,6 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    height: "100%",
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    p: 4,
-  };
-
   return (
     <Grid container xs={12}>
       <ImageList variant="masonry" cols={isDesktop ? 3 : 1} gap={8}>
@@ -76,9 +64,7 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box style={style}>
-          <ImageSlider images={images ? images : []} />
-        </Box>
+        <ImageSlider images={images ? images : []} />
       </Modal>
     </Grid>
   );

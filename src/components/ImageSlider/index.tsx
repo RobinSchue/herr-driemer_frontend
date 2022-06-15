@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 
-import { StyledImage, StyledSwiper, StyledSwiperSlide } from "./swiper.styled";
+import { StyledImage, StyledSwiperContainer } from "./swiper.styled";
 import { Navigation, Pagination, Scrollbar } from "swiper";
 
 import "swiper/css";
@@ -13,7 +13,7 @@ export interface ImageSliderProps {
 
 export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
   return (
-    <Swiper
+    <StyledSwiperContainer
       modules={[Navigation, Pagination, Scrollbar]}
       navigation={true}
       spaceBetween={0}
@@ -36,6 +36,6 @@ export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
           />
         </SwiperSlide>
       ))}
-    </Swiper>
+    </StyledSwiperContainer>
   );
 };
