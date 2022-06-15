@@ -19,7 +19,7 @@ export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
       spaceBetween={0}
       slidesPerView={1}
       speed={100}
-      loop={true}
+      loop={false}
       touchRatio={1.5}
       effect={"flip"}
       pagination={{ clickable: true }}
