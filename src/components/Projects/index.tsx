@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useRef, useState } from "react";
 import { ProjectEntity } from "../../../graphql/generated";
+import CloseIcon from "@mui/icons-material/Close";
 
 import {
   Box,
@@ -25,7 +26,9 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
   const slider = useRef(null);
 
   const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <Grid container xs={12}>
@@ -50,7 +53,8 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
                 loading="lazy"
                 placeholder="empty"
                 onClick={() => {
-                  setImages(images), handleOpen();
+                  setImages(images);
+                  handleOpen();
                 }}
               />
             </ImageListItem>
@@ -63,8 +67,32 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        closeAfterTransition
+        sx={{ zIndex: 9999, backgroundColor: "black" }}
       >
-        <ImageSlider images={images ? images : []} />
+        <Box>
+          <Box
+            sx={{
+              zIndex: 10000,
+              position: "absolute",
+              top: { xs: "auto", sm: "8px" },
+              bottom: { xs: "16px", sm: "auto" },
+              left: { xs: "50%", sm: "8px" },
+              right: { xs: "50%", sm: "auto" },
+              backgroundColor: "black",
+            }}
+          >
+            <CloseIcon
+              htmlColor="white"
+              onClick={handleClose}
+              fontSize="large"
+              sx={{
+                transform: { xs: "translateX(-50%)", sm: "none" },
+              }}
+            />
+          </Box>
+          <ImageSlider images={images ? images : []} />
+        </Box>
       </Modal>
     </Grid>
   );

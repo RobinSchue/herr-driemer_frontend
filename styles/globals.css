@@ -31,3 +31,10 @@ https://www.youtube.com/watch?v=4aJPgKLwAGY
 .swiperslide {
   -webkit-transform: translateZ(0);
 }
+
+.swiper-button-prev {
+  color: white !important;
+}
+.swiper-button-next {
+  color: white !important;
+}
