@@ -35,6 +35,21 @@ https://www.youtube.com/watch?v=4aJPgKLwAGY
 .swiper-button-prev {
   color: white !important;
 }
+
 .swiper-button-next {
   color: white !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination {
+    display: none !important;
+  }
 }
