@@ -4,7 +4,6 @@ import { ProjectEntity } from "../../../graphql/generated";
 import CloseIcon from "@mui/icons-material/Close";
 
 import {
-  Backdrop,
   Box,
   Grid,
   ImageList,
@@ -69,18 +68,29 @@ export const Projects = ({ projects }: ProjectsProps): JSX.Element => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-        sx={{ zIndex: 9999 }}
+        sx={{ zIndex: 9999, backgroundColor: "black" }}
       >
         <Box>
-          {/* <CloseIcon
-            htmlColor="red"
-            sx={{ zIndex: 10000 }}
-            onClick={handleClose}
-          /> */}
+          <Box
+            sx={{
+              zIndex: 10000,
+              position: "absolute",
+              top: { xs: "auto", sm: "8px" },
+              bottom: { xs: "16px", sm: "auto" },
+              left: { xs: "50%", sm: "8px" },
+              right: { xs: "50%", sm: "auto" },
+              backgroundColor: "black",
+            }}
+          >
+            <CloseIcon
+              htmlColor="white"
+              onClick={handleClose}
+              fontSize="large"
+              sx={{
+                transform: { xs: "translateX(-50%)", sm: "none" },
+              }}
+            />
+          </Box>
           <ImageSlider images={images ? images : []} />
         </Box>
       </Modal>

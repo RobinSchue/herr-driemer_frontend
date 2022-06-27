@@ -28,6 +28,7 @@ export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
       touchRatio={1.5}
       effect={"flip"}
       lazy={true}
+      maxBackfaceHiddenSlides={10}
     >
       {images.map((image) => (
         <SwiperSlide key={image}>
