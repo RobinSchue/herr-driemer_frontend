@@ -44,7 +44,6 @@ const Home: NextPage<HomePageProps> = ({ projects, contactData }) => {
           name="author"
           content="Lukas Driemer, Fotografie - Von Corporate Portraits bis Corporate Image"
         />
-        <meta name="robots" content="all" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
