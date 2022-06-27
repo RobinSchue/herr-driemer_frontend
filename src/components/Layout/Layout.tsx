@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         container
         xs={12}
         sx={{
-          padding: 2,
+          padding: 1,
           paddingTop: 4,
           paddingBottom: 8,
           minHeight: "100vh",
