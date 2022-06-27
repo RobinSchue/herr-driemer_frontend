@@ -23,7 +23,7 @@ export const ImageSlider = ({ images }: ImageSliderProps): JSX.Element => {
       navigation={true}
       spaceBetween={64}
       slidesPerView={1}
-      speed={100}
+      speed={900}
       loop={false}
       touchRatio={1.5}
       effect={"flip"}
